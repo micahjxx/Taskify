@@ -215,18 +215,30 @@ function render() {
         left.appendChild(span);
 
         // Delete button
-        let del = document.createElement("button");
-        del.textContent = "X";
-        del.onclick = () => {
-            if(confirm(`Delete task: "${task.text}"?`)){
-                tasks.splice(index,1);
-                deletedCount++;
-                save();
-                render();
-            }
-        };
+let doneBtn = document.createElement("button");
+doneBtn.textContent = task.done ? "Undone" : "Done";
+doneBtn.style.background = task.done ? "#f39c12" : "#2ecc71";
+
+doneBtn.onclick = () => {
+    task.done = !task.done;
+    save();
+    render();
+};
+
+// Delete button
+let del = document.createElement("button");
+del.textContent = "X";
+del.onclick = () => {
+    if (confirm(`Delete task: "${task.text}"?`)) {
+        tasks.splice(index, 1);
+        deletedCount++;
+        save();
+        render();
+    }
+};
 
         li.appendChild(left);
+        li.appendChild(doneBtn);
         li.appendChild(del);
 
         // Drag-and-drop
