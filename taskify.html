@@ -216,7 +216,9 @@ function render() {
 
         // Delete button
 let doneBtn = document.createElement("button");
-doneBtn.textContent = task.done ? "Undone" : "Done";
+doneBtn.innerHTML = task.done ? "✔️" : "✔";
+doneBtn.title = "Mark as done";
+
 doneBtn.style.background = task.done ? "#f39c12" : "#2ecc71";
 
 doneBtn.onclick = () => {
@@ -238,9 +240,15 @@ del.onclick = () => {
 };
 
         li.appendChild(left);
-        li.appendChild(doneBtn);
-        li.appendChild(del);
 
+        let btnGroup = document.createElement("div");
+        btnGroup.style.display = "flex";
+        btnGroup.style.gap = "5px";
+
+btnGroup.appendChild(doneBtn);
+btnGroup.appendChild(del);
+
+li.appendChild(btnGroup);
         // Drag-and-drop
         li.addEventListener("dragstart", e => { e.dataTransfer.setData("text/plain", index); });
         li.addEventListener("dragover", e => e.preventDefault());
