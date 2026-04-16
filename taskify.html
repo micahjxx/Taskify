@@ -214,7 +214,7 @@ function render() {
         left.appendChild(check);
         left.appendChild(span);
 
-        // Delete button
+        // Done button
 let doneBtn = document.createElement("button");
 doneBtn.innerHTML = task.done ? "✔️" : "✔";
 doneBtn.title = "Mark as done";
@@ -245,8 +245,8 @@ del.onclick = () => {
         btnGroup.style.display = "flex";
         btnGroup.style.gap = "5px";
 
-btnGroup.appendChild(doneBtn);
-btnGroup.appendChild(del);
+        btnGroup.appendChild(doneBtn);
+        btnGroup.appendChild(del);
 
 li.appendChild(btnGroup);
         // Drag-and-drop
