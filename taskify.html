@@ -162,6 +162,7 @@ li:hover {
 <script>
 // Data
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let originalTasks = structuredClone(tasks);
 let deletedCount = 0;
 let editedCount = 0;
 
@@ -317,7 +318,11 @@ document.getElementById("deleteSelected").addEventListener("click", ()=>{
 });
 document.getElementById("sortAZ").addEventListener("click", ()=>{ tasks.sort((a,b)=>a.text.localeCompare(b.text)); save(); render(); });
 document.getElementById("sortZA").addEventListener("click", ()=>{ tasks.sort((a,b)=>b.text.localeCompare(a.text)); save(); render(); });
-document.getElementById("reset").addEventListener("click", ()=>{ location.reload(); });
+document.getElementById("reset").addEventListener("click", ()=>{
+    tasks = structuredClone(originalTasks);
+    save();
+    render();
+});
 document.getElementById("themeToggle").addEventListener("click", ()=>{ document.body.classList.toggle("dark-mode"); });
 
 render();
